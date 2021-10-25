@@ -54,14 +54,6 @@ public class EditMarkCommand extends Command {
         }
     }
 
-    /**
-     * Executes the edit_marks command and edits the marks of a student's assessment.
-     *
-     * @param moduleList The list of modules.
-     * @param ui         The ui instance to handle interactions with the user.
-     * @param storage    The storage instance to handle saving.
-     * @throws TaaException If the user inputs an invalid command or has missing/invalid argument(s).
-     */
     @Override
     public void execute(ModuleList moduleList, Ui ui, Storage storage) throws TaaException {
         String moduleCode = argumentMap.get(KEY_MODULE_CODE);
@@ -102,13 +94,6 @@ public class EditMarkCommand extends Command {
         storage.save(moduleList);
     }
 
-    /**
-     * Edits marks in the results hashmap of the student.
-     *
-     * @param ui The ui instance to handle interactions with the user.
-     * @param student The student whose marks are to be edited.
-     * @param assessmentName The name of the assessment to edit marks for.
-     */
     private void editMark(Ui ui, Student student, String assessmentName, double newMarks) {
         double previousMark = student.getMarks(assessmentName);
         student.deleteMark(assessmentName);
@@ -116,11 +101,6 @@ public class EditMarkCommand extends Command {
         ui.printMessage(String.format(MESSAGE_FORMAT_MARKS_EDITED, student, previousMark, newMarks, assessmentName));
     }
 
-    /**
-     * Returns the usage message of the edit marks command.
-     *
-     * @return String which contains the usage message.
-     */
     @Override
     protected String getUsage() {
         return String.format(

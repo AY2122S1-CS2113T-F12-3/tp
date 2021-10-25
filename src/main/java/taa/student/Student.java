@@ -5,7 +5,6 @@ import taa.ClassChecker;
 import taa.assessment.Assessment;
 import taa.assessment.AssessmentList;
 import taa.attendance.AttendanceList;
-import taa.exception.TaaException;
 
 import java.util.HashMap;
 

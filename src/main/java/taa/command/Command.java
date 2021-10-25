@@ -14,6 +14,8 @@ public abstract class Command {
     public static final String COMMAND_LIST_STUDENTS = "list_students";
     public static final String COMMAND_LIST_ASSESSMENTS = "list_assessments";
     public static final String COMMAND_LIST_ATTENDANCE = "list_attendance";
+    public static final String COMMAND_LIST_MARKS = "list_marks";
+    public static final String COMMAND_AVERAGE_MARKS = "average_marks";
     public static final String COMMAND_ADD_MODULE = "add_module";
     public static final String COMMAND_EDIT_MODULE = "edit_module";
     public static final String COMMAND_DELETE_MODULE = "delete_module";
@@ -25,13 +27,10 @@ public abstract class Command {
     public static final String COMMAND_DELETE_ATTENDANCE = "delete_attendance";
     public static final String COMMAND_ADD_ASSESSMENT = "add_assessment";
     public static final String COMMAND_DELETE_ASSESSMENT = "delete_assessment";
-    public static final String COMMAND_EDIT_ASSESSMENT = "edit_assessment";
-    public static final String COMMAND_LIST_MARKS = "list_marks";
-    public static final String COMMAND_AVERAGE_MARKS = "average_marks";
     public static final String COMMAND_SET_MARKS = "set_marks";
     public static final String COMMAND_EDIT_MARK = "edit_mark";
+    public static final String COMMAND_EDIT_ASSESSMENT = "edit_assessment";
     public static final String COMMAND_DELETE_MARK = "delete_mark";
-    public static final String COMMAND_SORT_BY_SCORES = "sort_by_scores";
     public static final String COMMAND_HELP = "help";
 
     // Common messages
