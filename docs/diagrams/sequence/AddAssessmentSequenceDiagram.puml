@@ -2,78 +2,54 @@
 !include SequenceStyle.puml
 
 Actor User as user
-Participant ":Ui" as ui
 Participant ":Taa" as taa
-Participant "<<class>>\nParser" as parser
 Participant ":AddAssessmentCommand" as addAssessmentCommand
-Participant ":ModuleList" as moduleList
-Participant ":Module" as module
+Participant ":ClassList" as classList
+Participant ":TeachingClass" as teachingClass
 Participant ":AssessmentList" as assessmentList
 Participant ":Assessment" as assessment
 Participant ":Storage" as storage
 
+user -> taa : "add_assessment c/CS2113T-F12\nn/Finals m/100 w/50"
 activate taa
 
-taa -> ui : getUserInput()
-activate ui
-
-user -> ui : "add_assessment c/CS2113T\nn/Finals m/100 w/30"
-ui --> taa : userInput:String
-deactivate ui
-
-taa -> parser : parseUserInput(userInput)
-activate parser
-
-create addAssessmentCommand
-parser -> addAssessmentCommand
-activate addAssessmentCommand
-addAssessmentCommand -> parser
-deactivate addAssessmentCommand
-
-parser --> taa : command:AddAssessmentCommand
-deactivate parser
-
-taa -> addAssessmentCommand : checkArguments()
+taa -> addAssessmentCommand : execute(classList:ClassList\nui:Ui, storage:Storage)
 activate addAssessmentCommand
 
-addAssessmentCommand --> taa
-deactivate addAssessmentCommand
+addAssessmentCommand -> classList : getClassWithId("CS2113T-F12")
+activate classList
+classList --> addAssessmentCommand : teachingClass:TeachingClass
+deactivate classList
 
-taa -> addAssessmentCommand : execute(moduleList:ModuleList, ui:Ui, storage:Storage)
-activate addAssessmentCommand
-
-addAssessmentCommand -> module
-activate module
-module --> addAssessmentCommand
-deactivate module
-
+alt teachingClass != null
 create assessment
 addAssessmentCommand -> assessment
 activate assessment
-assessment --> addAssessmentCommand
+assessment --> addAssessmentCommand : assessment:Assessment
 deactivate assessment
 
-addAssessmentCommand -> assessmentList : getAssessmentList()
+addAssessmentCommand -> teachingClass : getAssessmentList()
+activate teachingClass
+teachingClass --> addAssessmentCommand
+deactivate teachingClass
+
+addAssessmentCommand -> assessmentList : addAssessment(assessment)
 activate assessmentList
 assessmentList --> addAssessmentCommand
 deactivate assessmentList
 
-addAssessmentCommand -> assessmentList : addAssessment(assessment:Assessment)
-activate assessmentList
-assessmentList --> addAssessmentCommand
-deactivate assessmentList
-
-addAssessmentCommand -> storage : save(moduleList:ModuleList)
+addAssessmentCommand -> storage : save(classList)
 activate storage
 storage --> addAssessmentCommand
 deactivate storage
+end
 
-addAssessmentCommand -> ui : printMessage("Assessment added to CS2113T: ...")
-activate ui
-ui -> user : Display message:\n"Assessment added to CS2113T: ..."
-ui --> addAssessmentCommand
-deactivate ui
-
+addAssessmentCommand --> taa
 deactivate addAssessmentCommand
+taa -[hidden]-> addAssessmentCommand
+destroy addAssessmentCommand
+
+taa --> user
+deactivate taa
 
 @enduml

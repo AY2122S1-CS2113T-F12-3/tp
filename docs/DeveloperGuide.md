@@ -118,6 +118,18 @@ the various data within it.
 
 <br>
 
+### AssessmentList Component
+![AssessmentListClassDiagram](diagrams/assessment/AssessmentListClassDiagram.png)
+
+The `Assessment` class contains data of all assessments saved within it. It provides methods to allow other classes to access
+the various data within it.
+
+`AssessmentList` implements the following functionalities:
+* Add/Delete `AssessmentList` objects within the list.
+* Return all `AssessmentList` objects within the list.
+
+<br>
+
 ### Util Component
 ![UtilClassDiagram](diagrams/class/UtilClassDiagram.png)
 
